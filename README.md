@@ -1,4 +1,13 @@
 # spring-boot-microservices
+<h1>install Docker</h1>
+<h1>install zipkin</h1>
+<h1>install micrometer apache </h1>
+<h1>install rabbitMQ</h1>
+<h1>install image of rabbitMQ,pgAdmin,Postgres </h1>
+
+
+
+
 
 MICROSERVICES:<br>
 Creating Job Service<br>
@@ -14,3 +23,4 @@ API GATEWAYS-Eureka Discovery Server<br>
 FAULT TOLERANCE AND CIRCUIT BREAKING<br>
 WORKING WITH RABBITMQ-message queue, asynchronous communication<br>
 DOCKER FOR SPRING BOOT MICROSERVICES<br>
+
