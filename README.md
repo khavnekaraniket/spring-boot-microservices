@@ -1,1 +1,16 @@
 # spring-boot-microservices
+
+MICROSERVICES:
+Creating Job Service
+Creating Company Service
+Creating Review Service
+Migrating to PostgreSQL
+SYNCHRONOUS COMMUNICATION: INTER-SERVICE COMMUNICATION USING REST TEMPLATE
+SERVICE REGISTRY AND INTER-SERVICE COMMUNICATION-eureka Netflix server for service registry
+WORKING WITH OPENFEIGN
+DISTRIBUTED TRACING WITH ZIPKIN
+SETTING UP CONFIG SERVER-Setting up Spring Cloud Config Client
+API GATEWAYS-Eureka Discovery Server
+FAULT TOLERANCE AND CIRCUIT BREAKING
+WORKING WITH RABBITMQ-message queue, asynchronous communication
+DOCKER FOR SPRING BOOT MICROSERVICES
