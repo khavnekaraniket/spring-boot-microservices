@@ -3,6 +3,7 @@ package com.example.reviewms.review.controller;
 
 
 import com.example.reviewms.review.entity.Review;
+import com.example.reviewms.review.messaging.ReviewMessageProducer;
 import com.example.reviewms.review.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,11 @@ public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
+    private ReviewMessageProducer reviewMessageProducer;
 
+    public ReviewController(ReviewMessageProducer reviewMessageProducer) {
+        this.reviewMessageProducer = reviewMessageProducer;
+    }
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews(@RequestParam Long companyId) {
@@ -37,8 +42,10 @@ public class ReviewController {
     public ResponseEntity<String> addReviews(@RequestParam Long companyId, @RequestBody Review review) {
         try {
            boolean isReviewSaved = reviewService.addReview(companyId, review);
-           if(isReviewSaved)
-            return ResponseEntity.status(HttpStatus.CREATED).body("Review added successfully");
+           if(isReviewSaved) {
+               reviewMessageProducer.sendMessage(review);
+               return ResponseEntity.status(HttpStatus.CREATED).body("Review added successfully");
+           }
            else
                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add review");
         } catch (Exception e) {
@@ -82,4 +89,9 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/avarageRating")
+    public  double getAvarageReview(@RequestParam Long companyId){
+        List<Review> reviewList = reviewService.getAllReviews(companyId);
+        return reviewList.stream().mapToDouble(Review::getRating).average().orElse(0.0);
+    }
 }
